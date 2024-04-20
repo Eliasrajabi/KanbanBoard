@@ -9,4 +9,5 @@ export default {
     extend: {},
   },
   plugins: [typography, forms, aspectRatio],
+  
 };
