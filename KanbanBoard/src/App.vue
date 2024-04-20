@@ -1,16 +1,32 @@
 <script setup>
+import Board from './components/Board/Board.vue';
+import Card from './components/Card/Card.vue';
+import List from './components/List/List.vue';
+import ListForm from './components/List/ListForm.vue';
+
 
 
 </script>
 
 <template>
   <header>
+     
 
   </header>
 
+ 
   <main>
     <!-- <TheWelcome />  right side -->  
+<!-- 
+   <Card/>
+   <List/> -->
+
+  
+    <ListForm/>
+    
   </main>
+
+    
 </template>
 
 <style scoped>
