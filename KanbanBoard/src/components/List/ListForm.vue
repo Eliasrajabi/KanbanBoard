@@ -1,12 +1,12 @@
 <template>
   <!--  add/edit form -->
-  <div class="fixed top-10 right-0">
+  <div class="fixed top-10 right-0 ">
     <div class="flex flex-row">
       <div class="mx-10">
         <div class="flex flex-col">
           <button
             @click="showForm = true"
-            class="bg-slate-200 hover:bg-slate-300 text-slate-500 py-1 px-3 mt-2 justify-between items-center flex flex-row w-60"
+            class=" bg-list_header hover:bg-list_header_hover text-white py-1 px-3 mt-2 justify-between items-center flex flex-row w-60"
           >
             Add new list
             <svg
@@ -15,7 +15,7 @@
               height="20"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="#718096"
+              stroke="#F9F9F9"
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -25,16 +25,16 @@
             </svg>
           </button>
 
-          <form v-if="showForm" class="bg-white shadow-md rounded">
+          <form v-if="showForm" class="bg-stone-200 shadow-md rounded">
             <div class="px-4 py-2">
               <label
-                class="block text-gray-600 text-sm font-bold mb-2"
+                class="block text-list_header text-sm font-bold mb-2"
                 for="listName"
               >
                 {{ isEditing ? "Edit List Name" : "List Name" }}
               </label>
               <input
-                class="shadow rounded py-2  text-gray-700 leading-tight"
+                class="shadow rounded py-2 px-3  text-gray-500 leading-tight"
                 type="text"
                 placeholder="Enter a list name..."
                 id="listName"
@@ -44,13 +44,13 @@
             <div class="flex items-center justify-between">
               <button
                 type="submit"
-                class="px-3 py-2 font-bold text-sm text-slate-500 hover:text-slate-600"
+                class="px-3 py-2 font-bold text-sm text-list_header hover:text-slate-700"
                 @click="addList"
               >
                 {{ isEditing ? "Update" : "Add list" }}
               </button>
               <button
-                class="px-3 font-bold text-sm text-slate-500 hover:text-slate-600"
+                class="px-3 font-bold text-sm text-list_header hover:text-slate-700"
                 @click="resetForm"
               >
                 Cancel
@@ -65,21 +65,21 @@
   <!--  show lists -->
   <div class="flex flex-wrap items-start py-10 px-5">
     <div
-      class="bg-slate-100 rounded-xs m-3 w-60 shadow-md flex flex-col"
+      class="bg-list rounded-xs m-3 w-60 shadow-md flex flex-col"
       v-for="(list, index) in listNames"
       :key="index"
       @drop="dropTask(index)"
       @dragover.prevent
     >
       <div
-        class="flex flex-row justify-between items-center bg-slate-100 px-3 pt-3 pb-3"
+        class="flex flex-row justify-between items-center bg-list px-3 pt-3 pb-3"
       >
         <h2 class="text-sm font-bold">{{ list.name }}</h2>
 
         <div class=" ">
           <button
             @click="editList(index)"
-            class="bg-slate-100 hover:bg-slate-300 text-white font-bold py-0 px-0 rounded mr-2"
+            class=" hover:bg-list text-white font-bold py-0 px-0 rounded mr-2"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -87,7 +87,7 @@
               height="15"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="#718096"
+              stroke="#4C1616"
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -100,7 +100,7 @@
           </button>
           <button
             @click="deleteList(index)"
-            class="bg-slate-100 hover:bg-slate-300 text-white font-bold py-0 px-0 rounded"
+            class=" hover:bg-list_header_hove text-white font-bold py-0 px-0 rounded"
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -108,7 +108,7 @@
               height="15"
               viewBox="0 0 24 24"
               fill="none"
-              stroke="#718096"
+              stroke="#4C1616"
               stroke-width="2"
               stroke-linecap="round"
               stroke-linejoin="round"
@@ -129,7 +129,7 @@
         @dragstart="dragStart(index, taskIndex)"
       >
         <button
-          class="bg-stone-200 hover:bg-slate-300 text-white font-bold py-1 px-2 rounded float-right"
+          class=" hover:bg-list_header_hove text-white font-bold py-1 px-2 rounded float-right"
           @click="deleteAddedTask(index)"
         >
           <svg
@@ -138,7 +138,7 @@
             height="15"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#718096"
+            stroke="#4C1616"
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
@@ -156,7 +156,7 @@
       <div class="flex flex-col">
         <button
           @click="showTaskForm(index)"
-          class="bg-slate-100 hover:bg-slate-300 text-slate-500 py-1 px-3 mt-2 justify-between items-center flex flex-row w-60"
+          class=" bg-list_header hover:bg-list_header_hove text-white py-1 px-3 mt-2 justify-between items-center flex flex-row w-60"
         >
           Add another card
           <svg
@@ -165,7 +165,7 @@
             height="20"
             viewBox="0 0 24 24"
             fill="none"
-            stroke="#718096"
+            stroke="#FFF9F3"
             stroke-width="2"
             stroke-linecap="round"
             stroke-linejoin="round"
@@ -176,11 +176,11 @@
         </button>
         <form
           v-if="list.showTaskForm"
-          class="bg-slate-100 shadow-md px-3 pt-2 pb-2 mb-0 mt-0"
+          class="bg-stone-200 shadow-md px-3 pt-2 pb-2 mb-0 mt-0"
         >
           <div class="mb-2">
             <label
-              class="block text-gray-600 text-sm font-bold mb-2"
+              class="block text-list_header text-sm font-bold mb-2"
               for="taskTitle"
               >Title</label
             >
@@ -194,7 +194,7 @@
           </div>
           <div class="mb-4">
             <label
-              class="block text-gray-600 text-sm font-bold mb-2"
+              class="block text-list_header text-sm font-bold mb-2"
               for="taskDescription"
               >Description</label
             >
@@ -208,14 +208,14 @@
           <div class="flex items-center justify-between">
             <button
               type="submit"
-              class="bg-slate-400 hover:bg-slate-500 text-white font-bold py-1 px-2 rounded focus:outline-none focus:shadow-outline"
+              class="   text-list_header hover:text-slate-600 font-bold text-sm py-1 px-2 rounded "
               @click="addTask(index)"
             >
               Add card
             </button>
             <button
               type="button"
-              class="inline-block align-baseline font-bold py-2 px-2 text-sm text-slate-400 hover:text-slate-500"
+              class="inline-block align-baseline font-bold py-2 px-2 text-sm text-list_header hover:text-slate-600"
               @click="cancelAddTask(index)"
             >
               Cancel
@@ -312,6 +312,8 @@ export default {
       this.listNames[index].showTaskForm = false;
       this.listNames[index].newTask = { title: "", description: "" };
     },
+  
+
     dragStart(listIndex, taskIndex) {
       this.draggedTask = { listIndex, taskIndex };
     },

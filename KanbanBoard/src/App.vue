@@ -7,11 +7,12 @@ import ListForm from './components/List/ListForm.vue';
 
 </script>
 
-<template>
+<template  >
   <header>
   </header>
-  <main>
-
+  
+  <main class=" bg-zinc-300 min-h-screen">
+    
     <ListForm/>
     
   </main>
