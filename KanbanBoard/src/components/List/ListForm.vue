@@ -1,25 +1,43 @@
 <template>
-  <div class="flex flex-wrap">
-    <div class="mx-auto px-4 w-96">
-      <button
-        class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
-        @click="showForm = true"
-      >
-        Add another List
-      </button>
+  <!--  add/edit form -->
+  <div  class="fixed top-11 right-0 ">
+  <div class=" flex flex-row  ">
+    <div class="mx-10 ">
+     <div class="flex flex-col">
+        <button
+         @click="showForm = true"
+          class="bg-slate-200 hover:bg-slate-300 text-slate-500 py-1 px-3 mt-2  justify-between items-center flex flex-row w-60"
+        >
+          Add new list
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="20"
+            height="20"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="#718096"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <line x1="12" y1="5" x2="12" y2="19"></line>
+            <line x1="5" y1="12" x2="19" y2="12"></line>
+          </svg>
+        </button>
+      
       <form
         v-if="showForm"
-        class="bg-white shadow-md rounded px-8 pt-6 pb-8 mb-4"
+        class="bg-white shadow-md rounded "
       >
-        <div class="mb-4">
+        <div class=" px-3  ">
           <label
-            class="block text-gray-700 text-sm font-bold mb-2"
+            class="block text-gray-600 text-sm font-bold mb-2"
             for="listName"
           >
             {{ isEditing ? "Edit List Name" : "List Name" }}
           </label>
           <input
-            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+            class="shadow rounded  py-2 px-1 text-gray-700 leading-tight "
             type="text"
             placeholder="Enter a list name..."
             id="listName"
@@ -29,13 +47,13 @@
         <div class="flex items-center justify-between">
           <button
             type="submit"
-            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+            class="px-3 py-2 font-bold text-sm text-slate-500 hover:text-slate-600 "
             @click="addList"
           >
             {{ isEditing ? "Update" : "add list" }}
           </button>
           <button
-            class="inline-block align-baseline font-bold text-sm text-blue-500 hover:text-blue-800"
+            class="px-3 font-bold text-sm text-slate-500 hover:text-slate-600"
             @click="resetForm"
           >
             Cancel
@@ -43,10 +61,12 @@
         </div>
       </form>
     </div>
+    </div>
+  </div>
   </div>
   <!--  end of add/edit form -->
   <!--  show lists -->
-  <div class="flex flex-wrap items-start py-10 px-5">
+  <div class="flex flex-wrap items-start py-2 px-5">
     <div
        class="bg-slate-100 rounded-xs m-3 w-60 shadow-md flex flex-col "
       v-for="(list, index) in listNames"
@@ -238,6 +258,10 @@ export default {
           newTask: { title: "", description: "" },
           showTaskForm: false,
         });
+        if(this.listName === "") {
+          alert("Please enter a list name");
+          return;
+        }
       }
       this.resetForm();
       sessionStorage.setItem("listNames", JSON.stringify(this.listNames));
@@ -249,13 +273,20 @@ export default {
       this.isEditing = true; // set isEditing to true when editing
     },
     deleteList(index) {
+      if(!confirm("Are you sure you want to delete this list?")) {
+        return;
+      }
       this.listNames.splice(index, 1);
       sessionStorage.setItem("listNames", JSON.stringify(this.listNames));
+      
     },
     showTaskForm(index) {
       this.listNames[index].showTaskForm = true;
     },
     deleteAddedTask(index) {
+      if(!confirm("Are you sure you want to delete this task?")) {
+        return;
+      }
       this.listNames[index].tasks.pop();
       sessionStorage.setItem("listNames", JSON.stringify(this.listNames));
 
@@ -268,6 +299,10 @@ export default {
       this.isEditing = false;
     },
     addTask(index) {
+      if(this.listNames[index].newTask.title === "" || this.listNames[index].newTask.description === "") {
+        alert("Please enter a title and description for the task");
+        return;
+      }
       this.listNames[index].tasks.push({
         title: this.listNames[index].newTask.title,
         description: this.listNames[index].newTask.description,
