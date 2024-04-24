@@ -2,7 +2,7 @@
      <div class="flex flex-col">
         <button
           @click="showTaskForm(index)"
-          class=" bg-list_header hover:bg-list_header_hove text-white py-1 px-3 mt-2 justify-between items-center flex flex-row w-60"
+          class=" bg-list_header hover:bg-list_header_hove text-white py-1 px-3 mt-0 justify-between items-center flex flex-row w-60"
         >
         <span>Add another card</span>
           <PlusIcon />

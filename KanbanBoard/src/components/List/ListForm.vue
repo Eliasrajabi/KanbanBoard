@@ -18,7 +18,7 @@
       @dragover.prevent
     >
       <div
-        class="flex flex-row justify-between items-center bg-list px-3 pt-3 pb-3"
+        class="flex flex-row justify-between items-center bg-list px-3 pt-1 pb-2"
         
       >
         <h2 class="text-sm font-bold">{{ list.name }} </h2>
@@ -41,7 +41,7 @@
       <!--  End of List Item -->
       <!--  Add New Task Form -->
       <div
-        class="bg-stone-200 rounded p-3 mt-2 shadow-md"
+        class="bg-stone-200 rounded p-3 mt-0 shadow-md"
         v-for="(task, taskIndex) in list.tasks"
         :key="taskIndex"
         draggable="true"
