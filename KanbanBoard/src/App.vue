@@ -1,6 +1,8 @@
 <script setup>
 
 
+
+
 import ListForm from './components/List/ListForm.vue';
 
 
@@ -12,9 +14,11 @@ import ListForm from './components/List/ListForm.vue';
   </header>
   
   <main class=" bg-zinc-300 min-h-screen">
+    <ListForm  />
     
-    <ListForm/>
-    
+
+
+   
   </main>
 
     
