@@ -41,7 +41,7 @@
       <!--  End of List Item -->
       <!--  Add New Task Form -->
       <div
-        class="bg-stone-200 rounded p-3 mt-0 shadow-md"
+        class="bg-stone-200 rounded p-3 mt-2 shadow-md"
         v-for="(task, taskIndex) in list.tasks"
         :key="taskIndex"
         draggable="true"
