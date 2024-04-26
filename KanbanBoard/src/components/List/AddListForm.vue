@@ -10,7 +10,7 @@
           <PlusIcon />
         </button>
 
-        <form v-if="showForm" class="bg-stone-200 shadow-md rounded">
+       <form v-if="showForm" class="bg-stone-200 shadow-md rounded" @submit.prevent="onSubmit">
           <div class="px-4 py-2">
             <label
               class="block text-list_header text-sm font-bold mb-2"
@@ -23,7 +23,7 @@
               type="text"
               placeholder="Enter a list name..."
               id="listName"
-              :value="listName"
+              v-model="listName"
              @input="updateListName"
             />
           </div>
@@ -57,6 +57,12 @@ export default {
 
   components: {
     PlusIcon,
+  },
+    data() {
+    return {
+      listName: '',
+      
+    };
   },
 
    methods: {

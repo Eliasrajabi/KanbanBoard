@@ -18,7 +18,7 @@
       @dragover.prevent
     >
       <div
-        class="flex flex-row justify-between items-center bg-list px-3 pt-1 pb-2"
+        class="flex flex-row justify-between items-center bg-list px-3 pt-3 pb-3"
         
       >
         <h2 class="text-sm font-bold">{{ list.name }} </h2>
