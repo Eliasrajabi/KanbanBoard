@@ -2,10 +2,9 @@
   <AddListForm
     :showForm="showForm"
     :listName="listName"
-    :isEditing="isEditing" 
+    :isEditing="isEditing"
     @addList="addList"
     @closeForm="resetForm"
-    
   />
 
   <!--  show lists -->
@@ -19,11 +18,10 @@
     >
       <div
         class="flex flex-row justify-between items-center bg-list px-3 pt-3 pb-3"
-        
       >
-        <h2 class="text-sm font-bold">{{ list.name }} </h2>
+        <h2 class="text-sm font-bold">{{ list.name }}</h2>
 
-        <div class=" " >
+        <div class=" ">
           <button
             @click="editList(index)"
             class="hover:bg-list text-white font-bold py-0 px-0 rounded mr-2"
@@ -95,6 +93,11 @@ export default {
   },
   methods: {
     addList(listName) {
+      if (listName.trim() === "") {
+        alert("Please enter a list name");
+        return;
+      }
+
       if (this.editingIndex !== null) {
         // If editing, update the list at editingIndex
         this.listNames[this.editingIndex].name = listName;
@@ -108,11 +111,8 @@ export default {
           newTask: { title: "", description: "" },
           showTaskForm: false,
         });
-        if (listName === "") {
-          alert("Please enter a list name");
-          return;
-        }
       }
+
       this.resetForm();
       sessionStorage.setItem("listNames", JSON.stringify(this.listNames));
     },
@@ -145,6 +145,7 @@ export default {
       this.listName = "";
       this.editingIndex = null;
       this.isEditing = false;
+      
     },
     addTask(index) {
       if (
